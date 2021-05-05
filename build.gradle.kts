@@ -7,7 +7,7 @@
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.3.70"
-
+    id("idea")
     // Apply the application plugin to add support for building a CLI application.
     application
 }
@@ -31,8 +31,11 @@ dependencies {
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    testImplementation(
+        "org.junit.jupiter:junit-jupiter-api:5.7.0"
+    )
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-params:5.7.0")
 }
 
 application {
