@@ -2,7 +2,6 @@ package kt.design.patterns.observer
 
 import com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOut
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
@@ -26,27 +25,20 @@ class CurrentConditionsTest {
     }
 
     @Test
-    fun `should test junit`() {
-        assertTrue(true)
-    }
-
-    @Test
-    fun `should test output`() {
-        val text = tapSystemOut { print("Hello Baeldung Readers!!") }
-
-        assertEquals("Hello Baeldung Readers!!", text.trim { it <= ' ' })
-    }
-
-    @Test
-    fun `should test weather data`() {
+    fun `should receive weather data`() {
         val weatherStation = WeatherStation()
-        val conditions = CurrentConditions(station = weatherStation, temperature = 0F, humidity = 0F)
-        val updatedWeatherStation = weatherStation.register(conditions)
+        val northernConditions = CurrentConditions(station = weatherStation)
+        val southernConditions = CurrentConditions(station = weatherStation)
+        val updatedWeatherStation = weatherStation
+            .register(listOf(northernConditions, southernConditions))
 
-        val text = tapSystemOut {
+        val output = tapSystemOut {
             updatedWeatherStation.setValues(10F, 20F)
         }
 
-        assertEquals("Current conditions. Temperature: 10.0, humidity: 20.0", text.trim());
+        assertEquals("Current conditions. Temperature: 10.0, humidity: 20.0\n" +
+                "Current conditions. Temperature: 10.0, humidity: 20.0\n" +
+                "Current conditions. Temperature: 10.0, humidity: 20.0\n" +
+                "Current conditions. Temperature: 10.0, humidity: 20.0", output.trim());
     }
 }

@@ -1,8 +1,8 @@
 package kt.design.patterns.observer
 
 data class CurrentConditions(
-    private val temperature: Float,
-    private val humidity: Float,
+    private val temperature: Float = 0F,
+    private val humidity: Float = 0F,
     private val station: WeatherStation
 ) : WeatherSubscriber, DisplayElement {
 

@@ -12,8 +12,8 @@ data class WeatherStation(
         }
     }
 
-    override fun register(subscriber: WeatherSubscriber): WeatherStation {
-        return copy(subscribers = subscribers + subscriber)
+    override fun register(subscribers: List<WeatherSubscriber>): WeatherStation {
+        return copy(subscribers = subscribers + subscribers)
     }
 
     override fun remove(subscriber: WeatherSubscriber): WeatherStation {
