@@ -37,8 +37,6 @@ class CurrentConditionsTest {
         }
 
         assertEquals("Current conditions. Temperature: 10.0, humidity: 20.0\n" +
-                "Current conditions. Temperature: 10.0, humidity: 20.0\n" +
-                "Current conditions. Temperature: 10.0, humidity: 20.0\n" +
                 "Current conditions. Temperature: 10.0, humidity: 20.0", output.trim());
     }
 }
