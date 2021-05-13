@@ -9,7 +9,7 @@ import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
 
-class CurrentConditionsTest {
+class CurrentConditionsDisplayTest {
 
     private val standardOut = System.out
     private val outputStreamCaptor = ByteArrayOutputStream()
@@ -27,13 +27,12 @@ class CurrentConditionsTest {
     @Test
     fun `should receive weather data`() {
         val weatherStation = WeatherStation()
-        val northernConditions = CurrentConditions(station = weatherStation)
-        val southernConditions = CurrentConditions(station = weatherStation)
-        val updatedWeatherStation = weatherStation
-            .register(listOf(northernConditions, southernConditions))
+        val northernConditions = CurrentConditionsDisplay(station = weatherStation)
+        val southernConditions = CurrentConditionsDisplay(station = weatherStation)
+        weatherStation.register(listOf(northernConditions, southernConditions))
 
         val output = tapSystemOut {
-            updatedWeatherStation.setValues(10F, 20F)
+            weatherStation.setValues(10F, 20F)
         }
 
         assertEquals("Current conditions. Temperature: 10.0, humidity: 20.0\n" +

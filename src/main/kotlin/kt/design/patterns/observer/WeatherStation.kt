@@ -1,7 +1,7 @@
 package kt.design.patterns.observer
 
 data class WeatherStation(
-    private val subscribers: List<WeatherSubscriber> = listOf(),
+    private val subscribers: ArrayList<WeatherSubscriber> = arrayListOf(),
     private val temperature: Float = 0F,
     private val humidity: Float = 0F
 ) : Publisher<WeatherStation> {
@@ -12,18 +12,17 @@ data class WeatherStation(
         }
     }
 
-    override fun register(newSubscribers: List<WeatherSubscriber>): WeatherStation {
-        return copy(subscribers = subscribers + newSubscribers)
+    override fun register(newSubscribers: List<WeatherSubscriber>) {
+        subscribers.addAll(newSubscribers)
     }
 
-    override fun remove(subscriber: WeatherSubscriber): WeatherStation {
-        return copy(subscribers = subscribers.filterNot { it == subscriber })
+    override fun remove(subscriber: WeatherSubscriber) {
+        subscribers.remove(subscriber)
     }
 
     fun setValues(temperature: Float, humidity: Float): WeatherStation {
-        val updatedData = copy(temperature = temperature, humidity = humidity)
-        notifySubscribers(updatedData)
-        return updatedData
+        return copy(temperature = temperature, humidity = humidity)
+            .also { notifySubscribers(it) }
     }
 
 }
