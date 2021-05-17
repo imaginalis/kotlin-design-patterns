@@ -7,9 +7,9 @@ interface Publisher<T>{
 }
 
 interface WeatherSubscriber {
-    fun update(temperature: Float, humidity: Float): CurrentConditionsDisplay
+    fun update(temperature: Float, humidity: Float): WeatherSubscriber
 }
 
 interface DisplayElement {
-    fun display(currentConditions: CurrentConditionsDisplay)
+    fun display(temperature: Float, humidity: Float)
 }

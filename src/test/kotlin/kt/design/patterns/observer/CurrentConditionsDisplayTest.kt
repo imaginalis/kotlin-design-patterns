@@ -16,7 +16,7 @@ class CurrentConditionsDisplayTest {
 
     @BeforeEach
     fun setUp() {
-        System.setOut(PrintStream(outputStreamCaptor));
+        System.setOut(PrintStream(outputStreamCaptor))
     }
 
     @AfterEach
@@ -25,17 +25,19 @@ class CurrentConditionsDisplayTest {
     }
 
     @Test
-    fun `should receive weather data`() {
+    fun `both displays should receive weather data`() {
         val weatherStation = WeatherStation()
-        val northernConditions = CurrentConditionsDisplay(station = weatherStation)
-        val southernConditions = CurrentConditionsDisplay(station = weatherStation)
-        weatherStation.register(listOf(northernConditions, southernConditions))
+        val mobileDisplay = CurrentConditionsDisplay(station = weatherStation, name = "Mobile Display")
+        val stationaryDisplay = CurrentConditionsDisplay(station = weatherStation, name = "Stationary Display")
+        weatherStation.register(listOf(mobileDisplay, stationaryDisplay))
 
         val output = tapSystemOut {
             weatherStation.setValues(10F, 20F)
         }
 
-        assertEquals("Current conditions. Temperature: 10.0, humidity: 20.0\n" +
-                "Current conditions. Temperature: 10.0, humidity: 20.0", output.trim());
+        assertEquals(
+            "Current conditions on Mobile Display. Temperature: 10.0°C, humidity: 20%\n" +
+                    "Current conditions on Stationary Display. Temperature: 10.0°C, humidity: 20%", output.trim()
+        )
     }
 }
