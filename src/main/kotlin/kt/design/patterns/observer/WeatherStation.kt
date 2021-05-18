@@ -6,23 +6,23 @@ data class WeatherStation(
     private val humidity: Float = 0F
 ) : Publisher<WeatherStation> {
 
-    override fun notifySubscribers(weatherStation: WeatherStation) {
-        weatherStation.subscribers.forEach {
-            it.update(weatherStation.temperature, weatherStation.humidity)
+    override fun notifySubscribers() {
+        subscribers.forEach {
+            it.update(temperature, humidity)
         }
     }
 
-    override fun register(newSubscribers: List<WeatherSubscriber>) {
-        subscribers.addAll(newSubscribers)
+    override fun register(subscriber: WeatherSubscriber) {
+        subscribers.add(subscriber)
     }
 
     override fun remove(subscriber: WeatherSubscriber) {
         subscribers.remove(subscriber)
     }
 
-    fun setValues(temperature: Float, humidity: Float): WeatherStation {
+    fun updateData(temperature: Float, humidity: Float): WeatherStation {
         return copy(temperature = temperature, humidity = humidity)
-            .also { notifySubscribers(it) }
+            .also { it.notifySubscribers() }
     }
 
 }

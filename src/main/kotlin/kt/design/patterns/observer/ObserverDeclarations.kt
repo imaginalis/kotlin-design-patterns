@@ -1,9 +1,9 @@
 package kt.design.patterns.observer
 
 interface Publisher<T>{
-    fun register(subscribers: List<WeatherSubscriber>)
+    fun register(subscriber: WeatherSubscriber)
     fun remove(subscriber: WeatherSubscriber)
-    fun notifySubscribers(publisher: T)
+    fun notifySubscribers()
 }
 
 interface WeatherSubscriber {
