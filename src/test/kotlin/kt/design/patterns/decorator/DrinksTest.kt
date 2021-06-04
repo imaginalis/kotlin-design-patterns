@@ -29,4 +29,15 @@ internal class DrinksTest {
         assertEquals(2.5, drink.cost())
         assertEquals(1.7, secondDrink.cost())
     }
+
+    @Test
+    fun `should check costs and descriptions of the coffee and the coffee with additional ingredients`() {
+        val coffee = Coffee()
+        val coffeeWithMilk = Milk(Coffee())
+
+        assertEquals(coffee.description, "Black coffee")
+        assertEquals(coffeeWithMilk.description, "Black coffee, Milk")
+        assertEquals(1.5, coffee.cost())
+        assertEquals(1.7, coffeeWithMilk.cost())
+    }
 }
