@@ -22,7 +22,7 @@ internal class DrinksTest {
     }
 
     @Test
-    fun `should serve a drink with additional ingredients and return a valid cost`() {
+    fun `should serve a drink with additives and return a valid cost`() {
         val drink = NonCaffeine()
         val secondDrink = Milk(Coffee())
 
@@ -31,13 +31,14 @@ internal class DrinksTest {
     }
 
     @Test
-    fun `should check costs and descriptions of the coffee and the coffee with additional ingredients`() {
+    fun `should check costs and descriptions of the coffee and the coffee with additives`() {
         val coffee = Coffee()
-        val coffeeWithMilk = Milk(Coffee())
+        val coffeeWithMilkAndSugar = Cinnamon(Milk(Coffee()))
 
         assertEquals(coffee.description, "Black coffee")
-        assertEquals(coffeeWithMilk.description, "Black coffee, Milk")
+        assertEquals(coffeeWithMilkAndSugar.description, "Black coffee, Milk, Cinnamon")
         assertEquals(1.5, coffee.cost())
-        assertEquals(1.7, coffeeWithMilk.cost())
+        assertEquals(1.9, coffeeWithMilkAndSugar.cost())
     }
+
 }
