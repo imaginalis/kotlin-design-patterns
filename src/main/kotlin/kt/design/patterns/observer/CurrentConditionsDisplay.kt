@@ -1,6 +1,6 @@
 package kt.design.patterns.observer
 
-data class CurrentConditionsDisplay(
+internal data class CurrentConditionsDisplay(
     private val name: String,
     private val temperature: Float = 0F,
     private val humidity: Float = 0F,

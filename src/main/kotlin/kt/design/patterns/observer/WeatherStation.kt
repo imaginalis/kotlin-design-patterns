@@ -1,6 +1,6 @@
 package kt.design.patterns.observer
 
-data class WeatherStation(
+internal data class WeatherStation(
     private val subscribers: ArrayList<WeatherSubscriber> = arrayListOf(),
     private val temperature: Float = 0F,
     private val humidity: Float = 0F
