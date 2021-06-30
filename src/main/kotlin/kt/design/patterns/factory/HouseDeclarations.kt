@@ -1,15 +1,19 @@
 package kt.design.patterns.factory
 
-internal abstract class House
+internal abstract class House(construction: Construction)
 
-internal class WoodenHouse: House()
+internal abstract class Construction
 
-internal class ConcreteHouse: House()
+internal abstract class WoodenHouse(construction: Construction): House(construction)
 
-internal class AmericanWoodenHouse: House()
+internal abstract class ConcreteHouse(construction: Construction): House(construction)
 
-internal class EuropeanWoodenHouse: House()
+internal class AmericanWoodenHouse(construction: Construction): WoodenHouse(construction)
 
-internal class ModernConcreteHouse: House()
+internal class EuropeanWoodenHouse(construction: Construction): WoodenHouse(construction)
 
-internal class OldPanelConcreteHouse: House()
+internal class ModernConcreteHouse(construction: Construction): ConcreteHouse(construction)
+
+internal class OldPanelConcreteHouse(construction: Construction): ConcreteHouse(construction)
+
+internal class AmericanWoodenConstruction: Construction()
