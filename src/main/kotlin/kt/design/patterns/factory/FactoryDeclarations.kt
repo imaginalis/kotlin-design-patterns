@@ -11,24 +11,34 @@ internal abstract class ConstructionFactory {
 
 internal class AmericanWoodenHouseFactory(override val constructionFactory: ConstructionFactory) : HouseFactory() {
     override fun produceHouse(): House {
-        println("Providing the proper construction...")
-        val construction = constructionFactory.produceConstruction()
-        println("Producing the house...")
+        println("Providing proper construction...")
+        val construction = constructionFactory.produceConstruction() as WoodenConstruction
+        println("Producing the American wooden house...")
         return AmericanWoodenHouse(construction)
+    }
+}
+
+internal class EuropeanWoodenHouseFactory(override val constructionFactory: ConstructionFactory) : HouseFactory() {
+    override fun produceHouse(): House {
+        println("Providing proper construction...")
+        val construction = constructionFactory.produceConstruction() as WoodenConstruction
+        println("Producing the European wooden house...")
+        return EuropeanWoodenHouse(construction)
     }
 }
 
 internal class AmericanWoodenConstructionsFactory : ConstructionFactory() {
     override fun produceConstruction(): Construction {
         println("Measuring in inches...")
-        println("Producing wooden construction...")
+        println("Producing American wooden construction...")
         return AmericanWoodenConstruction()
     }
 }
 
-internal class EuropeanWoodenHouseFactory(override val constructionFactory: ConstructionFactory) : HouseFactory() {
-    override fun produceHouse(): House {
-        val construction = constructionFactory.produceConstruction()
-        return EuropeanWoodenHouse(construction)
+internal class EuropeanWoodenConstructionsFactory : ConstructionFactory() {
+    override fun produceConstruction(): Construction {
+        println("Measuring in centimeters...")
+        println("Producing European wooden construction...")
+        return AmericanWoodenConstruction()
     }
 }

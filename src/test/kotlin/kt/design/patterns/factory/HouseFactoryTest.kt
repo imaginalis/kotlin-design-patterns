@@ -31,9 +31,40 @@ class HouseFactoryTest {
             houseFactory.produceHouse()
         }
 
-        assertEquals("Providing the proper construction...\n" +
+        assertEquals("Providing proper construction...\n" +
                 "Measuring in inches...\n" +
-                "Producing wooden construction...\n" +
-                "Producing the house...\n", output)
+                "Producing American wooden construction...\n" +
+                "Producing the American wooden house...\n", output)
     }
+
+    @Test
+    fun `should construct an European wooden house`() {
+        val constructionFactory = EuropeanWoodenConstructionsFactory()
+        val houseFactory = EuropeanWoodenHouseFactory(constructionFactory)
+
+        val output = SystemLambda.tapSystemOut {
+            houseFactory.produceHouse()
+        }
+
+        assertEquals("Providing proper construction...\n" +
+                "Measuring in centimeters...\n" +
+                "Producing European wooden construction...\n" +
+                "Producing the European wooden house...\n", output)
+    }
+
+    @Test
+    fun `should construct an European wooden house with American wooden construction`() {
+        val constructionFactory = AmericanWoodenConstructionsFactory()
+        val houseFactory = EuropeanWoodenHouseFactory(constructionFactory)
+
+        val output = SystemLambda.tapSystemOut {
+            houseFactory.produceHouse()
+        }
+
+        assertEquals("Providing proper construction...\n" +
+                "Measuring in inches...\n" +
+                "Producing American wooden construction...\n" +
+                "Producing the European wooden house...\n", output)
+    }
+
 }
