@@ -67,4 +67,45 @@ class HouseFactoryTest {
                 "Producing the European wooden house...\n", output)
     }
 
+    @Test
+    fun `should construct an old panel concrete house with panel construction`() {
+        val constructionFactory = PanelPrefabricatedConstructionFactory()
+        val houseFactory = OldPanelConcreteHouseFactory(constructionFactory)
+
+        val output = SystemLambda.tapSystemOut {
+            houseFactory.produceHouse()
+        }
+
+        assertEquals("Providing proper construction...\n" +
+                "Producing proven & good panel prefabricated elements...\n" +
+                "Producing old concrete panel house...\n", output)
+    }
+
+    @Test
+    fun `should construct modern concrete house with modern construction`() {
+        val constructionFactory = ModernPrefabricatedConstructionFactory()
+        val houseFactory = ModernConcreteHouseFactory(constructionFactory)
+
+        val output = SystemLambda.tapSystemOut {
+            houseFactory.produceHouse()
+        }
+
+        assertEquals("Providing proper construction...\n" +
+                "Producing shiny & modern prefabricated elements...\n" +
+                "Producing modern concrete house...\n", output)
+    }
+
+    @Test
+    fun `should construct an old panel concrete house with modern construction`() {
+        val constructionFactory = ModernPrefabricatedConstructionFactory()
+        val houseFactory = OldPanelConcreteHouseFactory(constructionFactory)
+
+        val output = SystemLambda.tapSystemOut {
+            houseFactory.produceHouse()
+        }
+
+        assertEquals("Providing proper construction...\n" +
+                "Producing shiny & modern prefabricated elements...\n" +
+                "Producing old concrete panel house...\n", output)
+    }
 }

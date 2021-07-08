@@ -27,6 +27,24 @@ internal class EuropeanWoodenHouseFactory(override val constructionFactory: Cons
     }
 }
 
+internal class ModernConcreteHouseFactory(override val constructionFactory: ConstructionFactory) : HouseFactory() {
+    override fun produceHouse(): House {
+        println("Providing proper construction...")
+        val construction = constructionFactory.produceConstruction() as ConcreteConstruction
+        println("Producing modern concrete house...")
+        return ModernConcreteHouse(construction)
+    }
+}
+
+internal class OldPanelConcreteHouseFactory(override val constructionFactory: ConstructionFactory) : HouseFactory() {
+    override fun produceHouse(): House {
+        println("Providing proper construction...")
+        val construction = constructionFactory.produceConstruction() as ConcreteConstruction
+        println("Producing old concrete panel house...")
+        return OldPanelConcreteHouse(construction)
+    }
+}
+
 internal class AmericanWoodenConstructionsFactory : ConstructionFactory() {
     override fun produceConstruction(): Construction {
         println("Measuring in inches...")
@@ -40,5 +58,19 @@ internal class EuropeanWoodenConstructionsFactory : ConstructionFactory() {
         println("Measuring in centimeters...")
         println("Producing European wooden construction...")
         return AmericanWoodenConstruction()
+    }
+}
+
+internal class PanelPrefabricatedConstructionFactory : ConstructionFactory() {
+    override fun produceConstruction(): Construction {
+        println("Producing proven & good panel prefabricated elements...")
+        return PanelPrefabricatedConstruction()
+    }
+}
+
+internal class ModernPrefabricatedConstructionFactory : ConstructionFactory() {
+    override fun produceConstruction(): Construction {
+        println("Producing shiny & modern prefabricated elements...")
+        return ModernPrefabricatedConstruction()
     }
 }
