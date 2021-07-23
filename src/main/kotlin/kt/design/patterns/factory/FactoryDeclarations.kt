@@ -57,7 +57,7 @@ internal class EuropeanWoodenConstructionsFactory : ConstructionFactory() {
     override fun produceConstruction(): Construction {
         println("Measuring in centimeters...")
         println("Producing European wooden construction...")
-        return AmericanWoodenConstruction()
+        return EuropeanWoodenConstruction()
     }
 }
 
