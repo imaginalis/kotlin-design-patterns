@@ -1,10 +1,10 @@
 package kt.design.patterns.observer
 
 import com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOut
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
