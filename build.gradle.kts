@@ -21,12 +21,9 @@ repositories {
 dependencies {
     // Align versions of all Kotlin components
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-
     // Use the Kotlin JDK 8 standard library.
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.junit.jupiter:junit-jupiter:5.7.0")
-    implementation("org.junit.jupiter:junit-jupiter:5.7.0")
-
     testImplementation ("com.github.stefanbirkner:system-lambda:1.0.0")
 }
 
